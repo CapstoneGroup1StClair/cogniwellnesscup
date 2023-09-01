@@ -47,8 +47,8 @@ def get_form_submission():
     data['Environmental'] = data['en1']  + data['en2'] + data['en3']+ data['en4']+ data['en5']+ data['en6']+ data['en7']+ data['en8']+ data['en9']+ data['en10']
     selected_cols = ['Emotional', 'Occupational', 'Spiritual', 'Physical', 'Social', 'Financial', 'Intellectual', 'Environmental']
     data['dimension'] = data[selected_cols].idxmin(axis=1)
-    data = data.to_dict(orient='records')
-    db.wellness.insert_one(data)
+    data_dict = data.to_dict(orient='records')
+    db.wellness.insert_one(data_dict)
     msg = Message('Wellness Cup assessment: New Submission Receieved!', recipients=admin_emails)
     msg.body = render_template('cognixrsummary.html', **data)
     msg.html = render_template('cognixrsummary.html', **data)
