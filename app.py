@@ -31,24 +31,44 @@ def index():
 def get_form_submission():
     data = request.get_json()
     admin_emails = [user['email'] for user in db.Users.find()]
-    l = ['em1', 'em2', 'em3', 'em4', 'em5', 'em6', 'em7', 'em8', 'em9', 'em10', 'ph1', 'ph2', 'ph3', 'ph4', 'ph5', 'ph6', 'ph7', 'ph8', 'ph9', 'ph10', 'sp1', 'sp2', 'sp3', 'sp4', 'sp5', 'sp6', 'sp7', 'sp8', 'sp9', 'sp10','so1', 'so2', 'so3', 'so4', 'so5', 'so6', 'so7', 'so8', 'so9', 'so10','fi1', 'fi2', 'fi3', 'fi4', 'fi5', 'fi6', 'fi7', 'fi8', 'fi9', 'fi10','oc1', 'oc2', 'oc3', 'oc4', 'oc5', 'oc6', 'oc7', 'oc8', 'oc9', 'oc10','in1', 'in2', 'in3', 'in4', 'in5', 'in6', 'in7', 'in8', 'in9', 'in10','en1', 'en2', 'en3', 'en4', 'en5', 'en6', 'en7', 'en8', 'en9', 'en10']
-    data = pd.DataFrame(data, index=range(len(data)))
-    for col in data.columns:
-        if col in l:
-            data[col] = data[col].replace('', '4')
-            data[col] = data[col].astype('float')
-    data['Emotional'] = data['em1']  + data['em2'] + data['em3']+ data['em4']+ data['em5']+ data['em6']+ data['em7']+ data['em8']+ data['em9']+ data['em10']
-    data['Occupational'] = data['oc1']  + data['oc2'] + data['oc3']+ data['oc4']+ data['oc5']+ data['oc6']+ data['oc7']+ data['oc8']+ data['oc9']+ data['oc10']
-    data['Spiritual'] = data['sp1']  + data['sp2'] + data['sp3']+ data['sp4']+ data['sp5']+ data['sp6']+ data['sp7']+ data['sp8']+ data['sp9']+ data['sp10']
-    data['Physical'] = data['ph1']  + data['ph2'] + data['ph3']+ data['ph4']+ data['ph5']+ data['ph6']+ data['ph7']+ data['ph8']+ data['ph9']+ data['ph10']
-    data['Social'] = data['so1']  + data['so2'] + data['so3']+ data['so4']+ data['so5']+ data['so6']+ data['so7']+ data['so8']+ data['so9']+ data['so10']
-    data['Financial'] = data['fi1']  + data['fi2'] + data['fi3']+ data['fi4']+ data['fi5']+ data['fi6']+ data['fi7']+ data['fi8']+ data['fi9']+ data['fi10']
-    data['Intellectual'] = data['in1']  + data['in2'] + data['in3']+ data['in4']+ data['in5']+ data['in6']+ data['in7']+ data['in8']+ data['in9']+ data['in10']
-    data['Environmental'] = data['en1']  + data['en2'] + data['en3']+ data['en4']+ data['en5']+ data['en6']+ data['en7']+ data['en8']+ data['en9']+ data['en10']
-    selected_cols = ['Emotional', 'Occupational', 'Spiritual', 'Physical', 'Social', 'Financial', 'Intellectual', 'Environmental']
-    data['dimension'] = data[selected_cols].idxmin(axis=1)
-    data_dict = data.to_dict(orient='records')
-    db.wellness.insert_many(data_dict)
+
+    columns_to_process = ['em1', 'em2', 'em3', 'em4', 'em5', 'em6', 'em7', 'em8', 'em9', 'em10',
+                      'ph1', 'ph2', 'ph3', 'ph4', 'ph5', 'ph6', 'ph7', 'ph8', 'ph9', 'ph10',
+                      'sp1', 'sp2', 'sp3', 'sp4', 'sp5', 'sp6', 'sp7', 'sp8', 'sp9', 'sp10',
+                      'so1', 'so2', 'so3', 'so4', 'so5', 'so6', 'so7', 'so8', 'so9', 'so10',
+                      'fi1', 'fi2', 'fi3', 'fi4', 'fi5', 'fi6', 'fi7', 'fi8', 'fi9', 'fi10',
+                      'oc1', 'oc2', 'oc3', 'oc4', 'oc5', 'oc6', 'oc7', 'oc8', 'oc9', 'oc10',
+                      'in1', 'in2', 'in3', 'in4', 'in5', 'in6', 'in7', 'in8', 'in9', 'in10',
+                      'en1', 'en2', 'en3', 'en4', 'en5', 'en6', 'en7', 'en8', 'en9', 'en10']
+
+    for item in data:
+        for col in columns_to_process:
+            if col in item:
+                item[col] = float(item[col]) if item[col] != '' else 4.0
+    
+         emotional_sum = sum(item.get(f'em{i}', 4.0) for i in range(1, 11))
+         occupational_sum = sum(item.get(f'oc{i}', 4.0) for i in range(1, 11))
+         spiritual_sum = sum(item.get(f'sp{i}', 4.0) for i in range(1, 11))
+         physical_sum = sum(item.get(f'ph{i}', 4.0) for i in range(1, 11))
+         social_sum = sum(item.get(f'so{i}', 4.0) for i in range(1, 11))
+         financial_sum = sum(item.get(f'fi{i}', 4.0) for i in range(1, 11))
+         intellectual_sum = sum(item.get(f'in{i}', 4.0) for i in range(1, 11))
+         environmental_sum = sum(item.get(f'en{i}', 4.0) for i in range(1, 11))
+    
+        dimensions = {
+            'Emotional': emotional_sum,
+            'Occupational': occupational_sum,
+            'Spiritual': spiritual_sum,
+            'Physical': physical_sum,
+            'Social': social_sum,
+            'Financial': financial_sum,
+            'Intellectual': intellectual_sum,
+            'Environmental': environmental_sum
+        }
+    
+        item['dimension'] = min(dimensions, key=dimensions.get)
+
+    db.wellness.insert_one(data)
     msg = Message('Wellness Cup assessment: New Submission Receieved!', recipients=admin_emails)
     msg.body = render_template('cognixrsummary.html', **data)
     msg.html = render_template('cognixrsummary.html', **data)
