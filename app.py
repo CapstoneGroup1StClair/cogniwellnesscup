@@ -14,8 +14,8 @@ mail = Mail(app)
 
 @app.get('/')
 def index():
-    if (db.Youth.count_documents({}) > 0):
-        sample_record = db.Youth.find_one({}, sort=[( '_id', -1 )])
+    if (db.wellness.count_documents({}) > 0):
+        sample_record = db.wellness.find_one({}, sort=[( '_id', -1 )])
         admin_emails = [user['email'] for user in db.Users.find()]
         msg = Message('Health and Wellness Survey: New Submission Receieved!', recipients=admin_emails)
         msg.body = render_template('cognixrsummary.html', **sample_record)
@@ -28,27 +28,10 @@ def index():
 
 @app.post('/')
 def get_form_submission():
-    severity = 'GREEN'
-    recommendation = 'Self-guided program or workshops'
-    pickle_in = open("Youth.pk1", "rb")
-    rf = pickle.load(pickle_in)
     data = request.get_json()
     admin_emails = [user['email'] for user in db.Users.find()]
-    model_data = data[['upset', 'dizzy', 'enjoy', 'breathing', 'hated', 'reacting', 'shaky', 'stressing', 'terrified', 'nothing', 'irritated', 'relax', 'feeling', 'annoyed', 'panic', 'myself', 'good', 'easily annoyed','heart', 'scared', 'terrible']]
-    sev = rf.predict(model_data)    
-    total_score = process_answer(data)
-    if sev == 3:
-        severity = 'RED'
-        recommendation = 'Counselling with therapist with specialized therapy & self-guided if needed'
-    elif sev == 2:
-        severity = 'AMBER'
-        recommendation = 'Counseling therapist and self-guided material'
-    data['recommendation'] = recommendation
-    data['severity'] = severity
-    data['score'] = total_score
-    #data['severity_breakdown'] = breakdown
-    db.Youth.insert_one(data)
-    msg = Message('Health and Wellness Survey: New Submission Receieved!', recipients=admin_emails)
+    db.wellness.insert_one(data)
+    msg = Message('Wellness Cup assessment: New Submission Receieved!', recipients=admin_emails)
     msg.body = render_template('cognixrsummary.html', **data)
     msg.html = render_template('cognixrsummary.html', **data)
     mail.send(msg)
