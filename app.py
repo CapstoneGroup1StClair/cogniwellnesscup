@@ -39,7 +39,7 @@ def get_form_submission():
             data[col] = data[col].astype('float')
     data['Emotional'] = data['em1']  + data['em2'] + data['em3']+ data['em4']+ data['em5']+ data['em6']+ data['em7']+ data['em8']+ data['em9']+ data['em10']
     data['Occupational'] = data['oc1']  + data['oc2'] + data['oc3']+ data['oc4']+ data['oc5']+ data['oc6']+ data['oc7']+ data['oc8']+ data['oc9']+ data['oc10']
-    data['Spritual'] = data['sp1']  + data['sp2'] + data['sp3']+ data['sp4']+ data['sp5']+ data['sp6']+ data['sp7']+ data['sp8']+ data['sp9']+ data['sp10']
+    data['Spiritual'] = data['sp1']  + data['sp2'] + data['sp3']+ data['sp4']+ data['sp5']+ data['sp6']+ data['sp7']+ data['sp8']+ data['sp9']+ data['sp10']
     data['Physical'] = data['ph1']  + data['ph2'] + data['ph3']+ data['ph4']+ data['ph5']+ data['ph6']+ data['ph7']+ data['ph8']+ data['ph9']+ data['ph10']
     data['Social'] = data['so1']  + data['so2'] + data['so3']+ data['so4']+ data['so5']+ data['so6']+ data['so7']+ data['so8']+ data['so9']+ data['so10']
     data['Financial'] = data['fi1']  + data['fi2'] + data['fi3']+ data['fi4']+ data['fi5']+ data['fi6']+ data['fi7']+ data['fi8']+ data['fi9']+ data['fi10']
