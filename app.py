@@ -32,7 +32,7 @@ def get_form_submission():
     data = request.get_json()
     admin_emails = [user['email'] for user in db.Users.find()]
     l = ['em1', 'em2', 'em3', 'em4', 'em5', 'em6', 'em7', 'em8', 'em9', 'em10', 'ph1', 'ph2', 'ph3', 'ph4', 'ph5', 'ph6', 'ph7', 'ph8', 'ph9', 'ph10', 'sp1', 'sp2', 'sp3', 'sp4', 'sp5', 'sp6', 'sp7', 'sp8', 'sp9', 'sp10','so1', 'so2', 'so3', 'so4', 'so5', 'so6', 'so7', 'so8', 'so9', 'so10','fi1', 'fi2', 'fi3', 'fi4', 'fi5', 'fi6', 'fi7', 'f8', 'fi9', 'fi10','oc1', 'oc2', 'oc3', 'oc4', 'oc5', 'oc6', 'oc7', 'oc8', 'oc9', 'oc10','in1', 'in2', 'in3', 'in4', 'in5', 'in6', 'in7', 'in8', 'in9', 'in10','en1', 'en2', 'en3', 'en4', 'en5', 'en6', 'en7', 'en8', 'en9', 'en10']
-    data = pd.DataFrame(data)
+    data = pd.DataFrame(data, index = 1)
     for col in data.columns:
         if col in l:
             data[col] = data[col].replace('', '4')
@@ -47,6 +47,7 @@ def get_form_submission():
     data['Environmental'] = data['en1']  + data['en2'] + data['en3']+ data['en4']+ data['en5']+ data['en6']+ data['en7']+ data['en8']+ data['en9']+ data['en10']
     selected_cols = ['Emotional', 'Occupational', 'Spiritual', 'Physical', 'Social', 'Financial', 'Intellectual', 'Environmental']
     data['dimension'] = data[selected_cols].idxmin(axis=1)
+    data = data.to_dict(orient='records')
     db.wellness.insert_one(data)
     msg = Message('Wellness Cup assessment: New Submission Receieved!', recipients=admin_emails)
     msg.body = render_template('cognixrsummary.html', **data)
