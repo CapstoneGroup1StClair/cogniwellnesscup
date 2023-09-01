@@ -1,0 +1,224 @@
+- question_slug: age
+  type: single_select
+  answer_scores:
+    18 - 24: 0
+    25 - 34: 0
+    35 - 44: 0
+    45 - 54: 0
+    55+ : 0
+
+- question_slug: cultural
+  type: single_select
+  answer_scores:
+    "0" : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+    '4' : 4
+    '5' : 5
+    '6' : 6
+    '7' : 7
+    '8' : 8
+    '9' : 9
+    '10' : 10
+
+- question_slug: gender
+  type: single_select
+  answer_scores:
+    Male : 0
+    Female : 0
+    Prefer not to say : 0
+
+- question_slug: mental
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+    '4' : 4
+    '5' : 5
+    '6' : 6
+    '7' : 7
+    '8' : 8
+    '9' : 9
+    '10' : 10
+
+- question_slug: upset
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: dizzy
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: enjoy
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: breathing
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: E-mail
+  type: text
+
+- question_slug: hated 
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: ethinicity
+  type: single_select
+  answer_scores:
+    Asian : 0
+    Hispanic : 0
+    Native America : 0
+    Black/African American : 0
+    Prefer not to say : 0
+
+- question_slug: reacting
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: shaky
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+- question_slug: stressing
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: terrified
+  type: single_select
+  answer_scores:
+    '1' : 0
+    '2' : 0
+    '3' : 0
+
+- question_slug: nothing
+  type: single_select
+  answer_scores:
+    '0' : 6
+    '1' : 5
+    '2' : 4
+    '3' : 3
+
+- question_slug: irritated
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: relax
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: feeling
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+    
+- question_slug: annoyed
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: panic
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: myself
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: good
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: easily annoyed
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+
+- question_slug: heart
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: scared
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
+
+- question_slug: terrible
+  type: single_select
+  answer_scores:
+    '0' : 0
+    '1' : 1
+    '2' : 2
+    '3' : 3
